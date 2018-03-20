@@ -1,0 +1,82 @@
+{% extends "_layout.twig" %}
+
+{% block content %}
+    <link rel="stylesheet" type="text/css" href="/assets/css/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="/assets/css/slick-theme.css"/>
+<style>
+    #contactTab{
+        color: #64BB67 !important
+    }
+</style>
+
+
+    <div class="contactPage">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2962.8059780705667!2d-88.31276918455362!3d42.04734067920906!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880f0547156e27b1%3A0x4ef24ed897438e01!2s1341+Manor+Ct%2C+Elgin%2C+IL+60123!5e0!3m2!1sen!2sus!4v1516065613636"  frameborder="0" style="border:0" allowfullscreen></iframe><!--
+        --><div class="greenBar"></div>
+        <img src="/assets/images/general/sbg_gorilla_logo.jpg">
+        <div class="container">
+            <h1>CONTACT STRAIGHT BLAST GYM</h1>
+            <div class="greenBarSmall"></div>
+            <div class="contactFlex">
+                <div class="left">
+                    <a class="contactInfo" href="tel:1-224-325-5246">224.325.5246</a>
+                    <a class="contactInfo" href="mailto:info@sbgillinois.com">info@sbgillinois.com</a>
+                    <div class="recentSocial">
+                        <a class="fa fa-facebook-square" href="https://www.facebook.com/therealSBGIllinois/" target="_blank"></a>
+                        <a class="fa fa-twitter-square" href="https://twitter.com/sbgil521" target="_blank"></a>
+                        <a class="fa fa-instagram" href="https://www.instagram.com/sbgillinois/" target="_blank"></a>
+                        <a class="fa fa-youtube-square" href="https://www.youtube.com/channel/UCh5Bzv7amHunqCDgpiRAlYg" target="_blank"></a>
+                    </div>
+                    <form method="post" action="" accept-charset="UTF-8">
+                        {{ getCsrfInput() }}
+
+                        <input type="hidden" name="action" value="contactForm/sendMessage">
+
+                        <p>Full Name:</p>
+                        <input name="message[Name]" type="text" required>
+                        <p>Phone Number:</p>
+                        <input type="tel" required name="message[Phone]">
+
+                        <p>Email:</p>
+                        <input id="contact-form-email" type="email" name="fromEmail" required>
+                        <input id="contact-form-email1" type="hidden" name="message[Email]" required>
+                        <p>Message:</p>
+                        <textarea name="message[body]"></textarea>
+
+                        <button id="submit-contact" type="submit">SEND</button>
+                        </textarea>
+                    </form>
+                </div>
+                <div class="right"></div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="testimonials">
+        <div class="container">
+            <div class="carousel" id="carousel">
+                {% for item in craft.entries.section('homepage').first().testimonials %}
+                    {% if item.type == 'testimonial' %}
+                        <div>
+                            <p class="testimonial-comment"><span class=" fa fa-quote-left"></span>{{ item.comment }}<span class=" fa fa-quote-right"></span></p>
+                            <img src="{{ item.image.first().getUrl() }}">
+                            <p class="testimonial-name">{{ item.memberName }}</p>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <script src="/assets/js/slick.min.js"></script>
+    <script src="/assets/js/other.js"></script>
+    <script>
+        $('.carousel').slick({
+            autoplay: true,
+            autoplaySpeed: 5000,
+            swipe: false,
+            fade: true
+        });
+    </script>
+{% endblock %}

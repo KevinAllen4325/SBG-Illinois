@@ -1,0 +1,8 @@
+<div class="videos">
+    {% for video in entry.videos %}
+        <div class="memberVideos">
+            <iframe src="https://www.youtube.com/embed/{{ video.videoId }}?rel=0&amp;showinfo=0" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+            <p>{{ video.videoCaption }}</p>
+        </div>
+    {% endfor %}
+</div>

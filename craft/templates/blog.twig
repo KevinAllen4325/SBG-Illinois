@@ -1,0 +1,66 @@
+{% extends "_layout.twig" %}
+
+{% block content %}
+    <style>
+        #easyPaginate {
+            width:300px;
+        }
+        #easyPaginate img {
+            display:block;
+            margin-bottom:10px;
+        }
+        .easyPaginateNav a {
+            padding:5px;
+            color: #64BB67;
+        }
+        .easyPaginateNav a.current {
+            font-weight:bold;
+            text-decoration:underline;
+            color: #4d994d;
+        }
+        .easyPaginateNav{
+            width: 100% !important
+        }
+        #blogTab{
+            color: #64BB67 !important
+        }
+    </style>
+    <div class="greenBar"></div>
+        <div class="container">
+            <div class="blogPage">
+
+                <h1>STRAIGHT BLAST GYM BLOG</h1>
+                <div class="greenBarSmall"></div>
+                <div class="blogFlex" id="paginate">
+                    {% for entry in craft.entries.section('blogPosts') %}
+                        <a href="{{ entry.url }}">
+                            <div class="blogPreview">
+                                <div class="previewPhoto" style="background-image: url({{ entry.photo.first().getUrl }})"><div class="blogPhotoOverlay"><i class="fa fa-picture-o" aria-hidden="true"></i></div></div>
+                                <p  class="blogPreviewTitle">{{ entry.title }}</p>
+                                <p class="blogPreviewDate">{{ entry.postDate | date("M d, Y") }}</p>
+                                <p class="blogPreviewExcerpt">{{ entry.blogContent|excerpt(100) }} <span class="readMore">Read More <i class="fa fa-chevron-right"></i></span></p>
+                                <p class="likes"><i class="fa fa-comment" aria-hidden="true"></i> {{ craft.comments.all({ elementId: entry.id }) | length }}</p>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    <script src="/assets/js/other.js"></script>
+    <script src="/assets/js/jquery.easyPaginate.js"></script>
+    <script>
+      $(function() {
+          if($('.blogFlex').children('a').length > 4) {
+              $('#paginate').easyPaginate({
+                  paginateElement: 'a',
+                  elementsPerPage: 4
+              });
+          }
+
+              $('.easyPaginateNav a').on('click', function() {
+                  $("html, body").animate({ scrollTop: 0 }, 400);
+                  return false;
+              });
+      })
+    </script>
+{% endblock %}

@@ -1,0 +1,108 @@
+{% extends "_layout.twig" %}
+
+{% block content %}
+
+    <header class="homepageHeader">
+        <div class="videoWrapper">
+            <div class="blackBar top"></div>
+            <div class="videoContainer">
+
+                <video id="headerVideo" loop muted>
+                    <source src="/assets/videos/sbgTrim.mp4">
+                </video>
+            </div>
+            <div class="blackBar bottom"></div>
+        </div>
+
+        <div class="headerText">
+            <div class="text-box">
+                <i class="fa fa-volume-off"></i>
+                <h1>{{ entry.headerText|nl2br|raw }}</h1>
+                <p>{{ entry.headerSubText }}</p>
+                <button class="ctaButton">ACT NOW!</button>
+            </div>
+        </div>
+    </header>
+    <div class="homepageWrapper">
+        <div class="greenBar"></div>
+        <div class="homeBody">
+            <div class="container">
+                <div class="aboutText">
+                    <h1>DISCOVER YOUR TRIBE</h1>
+                    <div class="greenBarSmall"></div>
+                    <div class="about-body">
+                        {{ entry.body }}
+                    </div>
+                    <p class="tribe">ONE TRIBE, ONE VIBE!</p>
+                    <iframe src="https://www.youtube.com/embed/K6XQM9Gr26g?rel=0&showinfo=0" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+                </div>
+                <img src="/assets/images/general/sbg_gorilla_logo.jpg"/>
+            </div>
+
+        </div>
+
+        <div class="testimonials">
+            <div class="container">
+                <div class="carousel">
+                    {% for test in entry.testimonials %}
+                        <div>
+                            <p class="testimonial-comment"><span class=" fa fa-quote-left"></span>{{ test.comment }}<span class=" fa fa-quote-right"></span></p>
+                            <img src="{{ test.image.first().getUrl() }}">
+                            <p class="testimonial-name">{{ test.memberName }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="greyBox">
+
+        </div>
+        <div class="socialize">
+            <h2>LET'S SOCIALIZE</h2>
+            <div class="grey">
+                <div class="container">
+                  <div id="instafeed"></div>
+                </div>
+            </div>
+        </div>
+        <div class="signup">
+            <div class="container">
+                <a class="fa fa-facebook-square" href="https://www.facebook.com/therealSBGIllinois/" target="_blank"></a>
+                <a class="fa fa-twitter-square" href="https://twitter.com/sbgil521" target="_blank"></a>
+                <a class="fa fa-instagram" href="https://www.instagram.com/sbgillinois/" target="_blank"></a>
+                <a class="fa fa-youtube-square" href="https://www.youtube.com/channel/UCh5Bzv7amHunqCDgpiRAlYg" target="_blank"></a>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="/assets/js/instafeed.min.js"></script>
+    <script src="/assets/js/homepage.js"></script>
+    <script>
+        $(document.body).on('click', '.instagram-overlay' ,function(){
+            const that = $(this).parent('div').next();
+            that.css('display', 'flex');
+            that.animate({opacity: '1'}, 150);
+        });
+        $(document.body).on('click', '.instaClose' ,function(){
+            $(this).parent().parent().animate({opacity: '0'}, 150);
+            setTimeout(() => {
+                    $(this).parent().parent().css('display', 'none');
+            },150);
+        });
+
+        $('.fa-volume-off').click(function() {
+            const volume = $('#headerVideo');
+            if ($('video').prop('muted')) {
+                $('video').prop('muted', false);
+                $('.fa-volume-off').addClass('fa-volume-up');
+                $('.fa-volume-off').css('color', '#64BB67');
+            } else {
+                $('video').prop('muted', true);
+                $('.fa-volume-off').removeClass('fa-volume-up');
+                $('.fa-volume-off').css('color', '#E07A5F');
+            }
+        });
+    </script>
+
+
+{% endblock %}

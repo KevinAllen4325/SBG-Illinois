@@ -1,0 +1,21 @@
+{% extends "_layout.twig" %}
+
+{% block content %}
+    <style>
+        #membersTab{
+            color: #64BB67 !important
+        }
+    </style>
+    {% if currentUser %}
+        <div class="container">
+            {% include "_members.twig" %}
+        </div>
+    {% else %}
+        <div class="container">
+            <div class="login">
+                <p class="passwordTitle">This page is for <span id="green">members only</span>. Please log in to view this pages content.</p>
+            </div>
+        </div>
+    {% endif %}
+<script src="/assets/js/other.js"></script>
+{% endblock %}

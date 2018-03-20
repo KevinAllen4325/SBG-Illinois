@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+    <!-- META TAGS/SEO -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{ entry.metaDescription }}" >
+    <link rel="home" href="{{ siteUrl }}" />
+    <link rel="icon" href="/assets/images/general/favicon.png" type="image/x-icon">
+    <title>{% if entry.metaTitle %}{{ entry.metaTitle }}{% else %}{{ entry.title }}{% endif %}</title>
+    <!--FONTS-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:600,700|Open+Sans:400,400i,700" rel="stylesheet">
+    <!--JAVASCRIPT-->
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!--CSS-->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/assets/css/normalize.css"/>
+    <link rel="stylesheet" type="text/css" href="/assets/css/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="/assets/css/slick-theme.css"/>
+    <link rel="stylesheet" type="text/css" href="/assets/css/styles.css"/>
+        <style>
+            .stickyLogo{
+                display: none;
+            }
+            {% if entry.title|lower != 'homepage' %}
+            main{
+                padding-top: 100px;
+            }
+            nav{
+                background: white;
+                border-bottom: 2px solid #64BB67;
+                height: 100px;
+            }
+            .navSmall{
+                border-bottom: 2px solid #64BB67;
+            }
+            .loginForm, .adminPanel, .program-dropdown{
+                top: 98px;
+            }
+            .loginFormTop{
+                top: 61px !important;
+                border-top: 2px solid #64BB67;
+            }
+            @media screen and (max-width: 900px){
+                main{
+                    padding-top: 90px;
+                }
+            }
+            {% else %}
+
+            @media screen and (max-width: 900px){
+                .homepageWrapper{
+                    position: relative; top: -167px;
+                }
+
+                #contact{
+                    top: -167px;
+                }
+                footer{
+                    position: relative; top: -167px;
+                }
+            }
+            @media screen and (max-width: 815px){
+                #contact, footer, .homepageWrapper{
+                    top:0;
+                }
+            }
+            {% endif %}
+        </style>
+    {% if entry.title|lower == 'homepage'  %}
+        <script>
+            $(window).scroll( () => {
+                if ($(window).scrollTop() > 150) {
+                    $('.nav-items').addClass('nav-white');
+                    $('.adminPanel, .loginForm, .program-dropdown').hide();
+                    $('.adminPanel, .loginForm, .program-dropdown').addClass('loginFormTop');
+                    $('.logo').hide();
+                    $('.stickyLogo').fadeIn(200);
+                } else {
+                    $('nav .nav-items a, nav .nav-items p').css('color', 'white');
+                    $('.stickyLogo').hide();
+                    $('.logo').fadeIn(200);
+                    $('.nav-items').removeClass('nav-white');
+                    $('.adminPanel, .loginForm, .program-dropdown').removeClass('loginFormTop');
+                }
+            });
+        </script>
+    {% endif %}
+</head>
+
+<body>
+
+<div id="top"></div>
+{% if entry.title|lower == 'homepage' %}
+    <div class="preload">
+        <img src="/assets/images/general/gorilla.gif">
+        <img src="/assets/images/general/bar.gif">
+    </div>
+{% endif %}
+
+<nav>
+    <div class="navContainer ">
+        <a class="logo" href="/"><img class="logo" src="/assets/images/general/logo_white.png"></a>
+        <a class="stickyLogo" href="/"><img class="stickyLogo" src="/assets/images/general/sticky_logo.png"></a>
+        <div class="nav-items">
+            <a href="/">Home</a>
+            <p style="cursor: pointer;" id="program-dropdown">Programs</p>
+            <a id="membersTab" href="/members/">Members</a>
+            <a id="blogTab" href="/blog/">Blog</a>
+            <a id="contactTab" href="/contact/">Contact</a>
+            {% if currentUser %}
+                <a id="logout" href="{{ logoutUrl }}">Logout</a>
+            {% else %}
+                <p id="login">Login</p>
+            {% endif %}
+            {% if currentUser and currentUser.username == "admin" %}
+                <p class="bar" style="padding: 0;">|</p>
+                <p id="admin" style="color: #64BB67 !important">ADMIN</p>
+                {% elseif currentUser %}
+                    <p class="bar" style="padding: 0;">|</p>
+                    <p id="userName" style="color: #64BB67 !important; cursor: default">{{ currentUser.firstName }}</p>
+                {% else %}
+            {% endif %}
+        </div>
+        <div class="loginForm">
+            <form method="post" accept-charset="UTF-8">
+                {{ getCsrfInput() }}
+                <input type="hidden" name="action" value="users/login">
+                <input type="hidden" name="redirect" value="{{ url(craft.request.path) }}">
+
+                <h3><label for="loginName">Email</label></h3>
+                <input id="loginName" type="text" name="loginName"
+                       value="{{ craft.session.getRememberedUsername() }}">
+
+                <h3><label for="password">Password</label></h3>
+                <input id="password2" type="password" name="password">
+
+                <input id="loginSubmit" type="submit" value="Login">
+
+                {% if errorMessage is defined %}
+                    <p id="signInError">{{ errorMessage }}</p>
+                {% endif %}
+            </form>
+        </div>
+        <div class="adminPanel">
+            <a href="{{ siteUrl }}/admin/">Admin Panel</a>
+            <a href="/registration/">Register Users</a>
+            <a href="{{ siteUrl }}/admin/users">Manage Users</a>
+        </div>
+
+        <div class="program-dropdown">
+            <a id="kids" href="/kids-martial-arts/">Kids Martial Arts</a>
+            <a id="adult" href="/adult-martial-arts/">Adult Martial Arts</a>
+            <a id="fitness" href="/fitness/">Fitness</a>
+            <a id="yoga" href="/yoga/">Yoga</a>
+        </div>
+    </div>
+</nav>
+
+<div class="mobileNav">
+    <div class="container">
+        <img src="/assets/images/general/logo_black-1.png">
+        <div class="menu" id="hamburger">
+            <span class="fa fa-bars"></span>
+            <span class="fa fa-times"></span>
+        </div>
+    </div>
+</div>
+<div class="mobileNavItems">
+    <a href="/">Home</a>
+    <p class="mobileProgramTab">Programs
+    <span class=" fa fa-chevron-right programChevron"></span>
+    </p>
+    <div class="mobilePrograms">
+        <a href="/kids-martial-arts/">Kids Martial Arts</a>
+        <a href="/adult-martial-arts/">Adult Martial Arts</a>
+        <a href="/fitness/">Fitness</a>
+        <a href="/yoga/">Yoga</a>
+    </div>
+    <a href="/members/">Members</a>
+    <a href="/blog/">Blog</a>
+    <a href="/contact">Contact</a>
+    {% if currentUser %}
+        <a id="logout" href="{{ logoutUrl }}">Logout</a>
+    {% else %}
+        <p id="loginMobile">Login
+            <span class=" fa fa-chevron-right loginChevron"></span>
+        </p>
+        <form method="post" accept-charset="UTF-8">
+            {{ getCsrfInput() }}
+            <input type="hidden" name="action" value="users/login">
+            <input type="hidden" name="redirect" value="{{ url(craft.request.path) }}">
+
+            <h3><label for="mobileLoginName">Email</label></h3>
+            <input id="mobileLoginName" type="text" name="loginName"
+                   value="{{ craft.session.getRememberedUsername() }}">
+
+            <h3><label for="mobilePassword">Password</label></h3>
+            <input id="mobilePassword" type="password" name="password">
+
+            <input id="loginSubmitMobile" type="submit" value="Login">
+
+            {% if errorMessage is defined %}
+                <script>
+                    alert('{{ errorMessage }}')
+                </script>
+            {% endif %}
+        </form>
+    {% endif %}
+    {% if currentUser and currentUser.username == "admin" %}
+        <p id="admin" class="adminMobile" style="color: #64BB67 !important">ADMIN
+        <span class="fa fa-chevron-right adminChevron"></span>
+        </p>
+        <div class="mobileAdminLinks">
+            <a href="{{ siteUrl }}/admin/">Admin Panel</a>
+            <a href="/registration/">Register Users</a>
+            <a href="{{ siteUrl }}/admin/users">Manage Users</a>
+        </div>
+    {% endif %}
+</div>
+
+<main role="main" {% if entry.title|lower != 'contact' %}
+      class="{{ entry.title|lower }}" id="{{ entry.title|lower }}"{% endif %}>
+    {% block content %}
+    {% endblock %}
+</main>
+
+{% if entry.title|lower != 'contact' %}
+    <div id="contact">
+        <div class="container">
+            <h2>CONTACT US TODAY</h2>
+            <div style="width: 100%;">
+                <div class="address">
+                    <div class="map">
+                        <div class="map-overlay">
+                            <h3>ELGIN, IL</h3>
+                            <p>1341 Manor Ct unit B</p>
+                            <a href="tel:1-224-325-5246">224.325.5246</a>
+                            <a href="https://goo.gl/maps/hFeyg4EtYB82">View Larger Map</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact">
+                    <form method="post" action="" accept-charset="UTF-8">
+                        {{ getCsrfInput() }}
+                        <input type="hidden" name="action" value="contactForm/sendMessage">
+
+                        <input name="message[Name]" type="text" required placeholder="Full Name">
+
+                        <input type="tel" required name="message[Phone]" placeholder="Phone Number">
+
+                        <input id="contact-form-email" type="email" name="fromEmail" placeholder="Email" required>
+                        <input id="contact-form-email1" type="hidden" name="message[Email]" required>
+
+                        <textarea name="message[body]" placeholder="Message"></textarea>
+
+                        <button id="submit-contact" type="submit">SEND</button>
+                        </textarea>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+<footer>
+    <p>© 2018 SBG Illinois, All rights Reserved. Developed by <a href="http://kevinallen.io" target="_blank">Kevin Allen</a></p>
+</footer>
+
+<div class="signup-overlay">
+    <div class="form-overlay">
+
+
+        <div class="signup-box">
+            <div class="span-close"><span class="fa fa-times-circle-o"></span></div>
+            <p>Are you ready to book your<br><span class="green"> free</span> private lesson?</p>
+            <button class="signupBtn yes">Yes, i want to be part of the tribe!</button>
+            <button class="signupBtn no">no, i'll pass on my goals.</button>
+        </div>
+
+
+        <div class="popup-form">
+            <div class="span-close"><span class="fa fa-times-circle-o"></span></div>
+            <p>Awesome! just let us know some basic info</p>
+            <form method="post" accept-charset="UTF-8" action="">
+                {{ getCsrfInput() }}
+                <input type="hidden" name="action" value="contactForm/sendMessage">
+
+                <input type="text" name="message[Name]" placeholder="Name" required/>
+
+                <input id="signup-form-email" type="email" name="fromEmail" placeholder="Email" required/>
+                <input id="signup-form-email1" type="hidden" name="message[Email]" required>
+
+                <input type="tel" name="message[Phone]" placeholder="Phone Number" required/>
+
+                <button id="submit-contact2" type="submit">SIGN UP</button>
+            </form>
+        </div>
+
+
+    </div>
+</div>
+
+<a href="#top" class="arrow-up">
+    <span class="fa fa-chevron-up"></span>
+</a>
+<script src="/assets/js/slick.min.js"></script>
+<script src="/assets/js/jquery.easeScroll.js"></script>
+<script src="/assets/js/general.js"></script>
+<script>
+    $(function(){
+        $(window).scroll(() => {
+            if ($(window).scrollTop() > 150) {
+                $('.arrow-up').addClass('arrow-open', 200);
+                $('nav').addClass('navSmall', 200);
+                $('nav .nav-items a, nav .nav-items p').css('color', 'black');
+            }
+            else {
+                $('nav').removeClass('navSmall', 200);
+                $('.arrow-up').removeClass('arrow-open', 200);
+            }
+        });
+
+        $('.yes').on('click', () => {
+            $('.signup-box').hide();
+            $('.popup-form').show();
+        });
+
+        $('.span-close, .no').on('click', function () {
+            $('.signup-overlay').animate({opacity: '0'}, 200);
+            setTimeout( () => {
+                $('.signup-overlay').css('display', 'none');
+                $('.signup-box').show();
+                $('.popup-form').hide();
+                // $('body').removeClass('overflow')
+            }, 200)
+        });
+
+
+        {% if not currentUser %}
+            let timer = setTimeout( () => {
+                $('.signup-overlay').css('display', 'flex');
+                $('.signup-overlay').animate({opacity: '1'}, 200);
+            }, 40000);
+
+            $('.ctaButton').on('click', () => {
+                clearTimeout(timer);
+            });
+
+            $('#login').on('click', () => {
+                $('.loginForm').fadeToggle('fast');
+                $('.program-dropdown').fadeOut('fast');
+                $('.adminPanel').fadeOut('fast');
+            });
+        {% endif %}
+
+        {% if currentUser and currentUser.username == "admin" %}
+        $('#admin').on('click', () => {
+            $('.adminPanel').fadeToggle('fast');
+            $('.loginForm').fadeOut('fast');
+            $('.program-dropdown').fadeOut('fast');
+        });
+        $('.program-dropdown').css('right', '350px')
+        {% else %}
+        $('#admin').remove();
+        $('.program-dropdown').css('right', '250px')
+        $('.adminPanel').remove();
+        {% endif %}
+
+        $('#hamburger').on('click', () =>  {
+            $('.fa-bars, .fa-times').fadeToggle(250);
+            $('.mobileNavItems').toggleClass('mobileOpen', 250);
+        });
+        $('#loginMobile').on('click', () => {
+            $('.mobileNavItems form').toggleClass('form-open', 250);
+            $('.loginChevron').toggleClass('loginChevronOpen', 250);
+        });
+        $('.adminMobile').on('click', () => {
+            $('.mobileAdminLinks').toggleClass('mobileAdminOpen', 250);
+            $('.adminChevron').toggleClass('adminChevronOpen', 250);
+        });
+        $('.mobileProgramTab').on('click', () => {
+            $('.mobilePrograms').toggleClass('mobileProgramsOpen', 250);
+            $('.programChevron').toggleClass('programChevronOpen', 250);
+        })
+
+        $('#submit-contact').on('click', () =>  {
+            $('#contact-form-email1').val($('#contact-form-email').val())
+        })
+        $('#submit-contact2').on('click', () =>  {
+            $('#signup-form-email1').val($('#signup-form-email').val())
+        })
+
+        $('#program-dropdown').on('click', () =>  {
+            $('.program-dropdown').fadeToggle('fast');
+            $('.loginForm').fadeOut('fast');
+            $('.adminPanel').fadeOut('fast');
+        })
+
+        $('.ctaButton, .programActNow').on('click', () => {
+            $('.signup-overlay').css('display', 'flex');
+            // $('body').addClass('overflow')
+            $('.signup-overlay').animate({opacity: '1'}, 200);
+
+        });
+    })
+</script>
+</body>
+</html>

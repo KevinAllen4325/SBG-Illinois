@@ -1,0 +1,85 @@
+<link rel="stylesheet" type="text/css" href="/assets/css/justifiedGallery.min.css"/>
+<link rel="stylesheet" type="text/css" href="/assets/css/colorbox.css"/>
+<style>
+    #{{ entry.entryId|lower }}, #program-dropdown{
+        color: #64bb67!important;
+    }
+    #cboxClose, #cboxNext, #cboxPrevious{
+        display: block!important;
+        z-index: 1000;
+    }
+</style>
+<div class="programHeader">
+    {#<h2>DISCOVER YOUR TRIBE</h2>#}
+    {#<h3>SIGN UP FOR A FREE PRIVATE LESSON TODAY!</h3>#}
+</div>
+<div class="greenBar"></div>
+
+
+
+<div class="container">
+    <h1>{{ entry.title|upper }}</h1>
+    <div class="greenBarSmall"></div>
+    <div class="programContent">
+        <div class="programText">
+            {{ entry.body }}
+            <button class="programActNow">ACT NOW</button>
+        </div>
+    </div>
+    <div class="gallery">
+        <h3 class="testimonialHeader">
+            Gallery
+        </h3>
+        {% if entry.gallery %}
+            <div class="myGallery">
+                {% for image in entry.gallery %}
+                    <a rel="gllery1" href="{{ image.getUrl() }}">
+                        <img src="{{ image.getUrl() }}"/>
+                    </a>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+    <div class="happyMembers">
+        <h3 class="testimonialHeader">
+            Happy Members
+        </h3>
+        <div class="testimonialGrid">
+            {% for item in craft.entries.section('homepage').first().testimonials %}
+                {% if item.type == 'testimonial' %}
+                    <div class="testimonialItems">
+                        <div class="testimonialText">
+                            <p>"{{ item.comment }}"</p>
+                            <div class="pointer"></div>
+                        </div>
+                        <img src="{{ item.image.first().getUrl() }}"/>
+                        <p class="testimonialName">
+                            {{ item.memberName }}
+                        </p>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+<script src="/assets/js/other.js"></script>
+<script src="/assets/js/jquery.justifiedGallery.min.js"></script>
+<script src="/assets/js/jquery.colorbox-min.js"></script>
+<script>
+    $(".myGallery").justifiedGallery({
+        rowHeight: 200,
+        margins: 6,
+        rel : 'gallery1',
+        lastRow: 'hide'
+    }).on('jg.complete', function () {
+        $(this).find('a').colorbox({
+            maxWidth : '90%',
+            maxHeight : '90%',
+            opacity : 0.8,
+            transition : 'elastic',
+            current : ''
+        });
+    });
+</script>
