@@ -1,0 +1,2303 @@
+$mainGreen: #64BB67;
+$darkGreen: #397639;
+$mainRed: #E07A5F;
+$darkRed: #bd6158;
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+*::selection{
+  background-color: $mainGreen !important;
+  opacity: .7 !important;
+  color: white !important;
+}
+*::-moz-selection{
+  background-color: $mainGreen !important;
+  opacity: .7 !important;
+  color: white !important;
+}
+button{
+  outline: none ;
+  font-weight: 700;
+}
+body, html{
+  height: 100% !important;
+}
+body{
+  width: 100%;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  color: #414141;
+  overflow-x:hidden;
+}
+a{
+  outline: none !important;
+}
+.overflow{
+  overflow: hidden;
+}
+.container{
+  max-width: 1140px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+.preload{
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: white;
+  z-index: 1600;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.mobileNav{
+  display: none;
+}
+.mobileNavItems{
+  display: none;
+}
+body::-webkit-scrollbar-track
+{
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  background-color: #F5F5F5;
+}
+
+body::-webkit-scrollbar
+{
+  width: 10px;
+  background-color: #F5F5F5;
+}
+
+body::-webkit-scrollbar-thumb
+{
+  background-color: #414141;
+  border-radius: 10px
+}
+
+nav{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  width: 100%;
+  margin: 0 auto;
+  z-index: 1000;
+  border-bottom: 3px solid transparent;
+  display: block !important;
+  .navContainer{
+    max-width: 1140px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 auto;
+    position: relative;
+    .nav-items{
+      display: inline-block;
+      img{
+        width: 218px;
+      }
+      a, p{
+        color: white;
+        font-family: 'Montserrat';
+        padding: 0 12px;
+        text-transform: uppercase;
+        text-decoration: none;
+        outline: none;
+        font-size: 13px;
+        display: inline-block;
+        font-weight: 700;
+        -webkit-transition: color .1s;
+        -moz-transition: color .1s;
+        -ms-transition: color .1s;
+        -o-transition: color .1s;
+        transition: color .1s;
+        cursor: pointer;
+        &:hover{
+          color: white;
+        }
+        &:link{
+          color:white;
+        }
+        &:active{
+          color:white;
+        }
+        &:visited{
+          color: white;
+        }
+      }
+      #admin, #userName{
+        color: $mainGreen !important
+      }
+      .bar{
+        color: white;
+        cursor: default;
+      }
+      #login{
+        margin: 0;
+        cursor: pointer;
+      }
+    }
+    .nav-white{
+      a{
+        &:hover{
+          color: $mainGreen !important;
+        }
+      }
+      p{
+        &:hover{
+          color: $mainGreen !important;
+        }
+      }
+      .bar{
+        &:hover{
+          color: #414141 !important;
+          cursor:default;
+        }
+      }
+    }
+
+  }
+}
+.program-dropdown{
+  position: absolute;
+  top: 100px;
+  border-top: 3px solid $mainGreen;
+  background: #434343;
+  padding: 20px 30px;
+  display: none;
+  font-weight: bold;
+  letter-spacing: 2px;
+  font-size: 13px;
+  right: 250px;
+  a{
+    color: white;
+    display: block;
+    padding-bottom: 15px;
+    &:last-of-type{
+      padding-bottom: 0;
+    }
+  }
+}
+.navSmall{
+  height: 63px;
+  border-bottom: 3px solid $mainGreen;
+  background: white;
+}
+#admin{
+  cursor: pointer !important;
+}
+#homepage{
+  .homepageHeader{
+    width: 100%;
+    height: 100vh;
+    .videoWrapper{
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      z-index: -1;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      background: black;
+      .videoContainer{
+        max-width: 1640px;
+        width: 100%;
+        overflow: hidden;
+
+        video{
+          height: 100%;
+
+          left: 50%;
+          top: 0;
+          position: absolute;
+          -webkit-transform: translateX(-50%);
+          -ms-transform: translateX(-50%);
+          transform: translateX(-50%);
+        }
+      }
+      .blackBar{
+        width: 100%;
+        height: 12.38%;
+        position: absolute;
+        background: black;
+        z-index: 1;
+      }
+      .top{
+        top:0;
+      }
+      .bottom{
+        bottom: 0;
+      }
+    }
+    .headerText{
+      width: 100%;
+      height: 100%;
+      z-index: 500;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .text-box{
+        text-align: center;
+        height: auto;
+        position: relative;
+        padding: 20px;
+        background: rgba(0,0,0,.6);
+
+        i{
+          font-size: 28px;
+          position: absolute;
+          z-index: 900;
+          color: $mainRed;
+          top: 10px;
+          right: 15px;
+          cursor: pointer!important;
+          display: block;
+        }
+        h1{
+          color: white;
+          font-size:100px;
+          font-family: 'Montserrat';
+          margin: 0 0 15px 0;
+          font-weight: 700;
+        }
+        p{
+          color: white;
+          font-size:38px;
+          font-family: 'Montserrat';
+          margin-bottom: 15px;
+        }
+        .ctaButton{
+          width: 250px;
+          height: 75px;
+          background:$mainGreen;
+          border: none;
+          color: white;
+          font-size: 34px;
+          border-bottom: 3px solid $darkGreen;
+          text-shadow: $darkRed 0px 1px 0px;
+          &:hover{
+            background: $darkGreen;
+            border-bottom-color: #347634
+          }
+        }
+      }
+    }
+  }
+}
+.greenBar{
+  background-image: url(/assets/images/general/zenGreen2.png);
+  background-repeat: repeat;
+  height: 15px;
+  position: relative;
+  z-index: 100;
+  width: 100%;
+  -webkit-box-shadow: 0px 1px 10px 0px #363837;
+  -moz-box-shadow: 0px 1px 10px 0px #363837;
+  box-shadow: 0px 1px 10px 0px #363837;
+  border-bottom: 1px solid #737574;
+}
+.homeBody{
+  width: 100%;
+  background: white;
+  padding: 100px 0;
+  position: relative;
+  img{
+    width: 700px;
+    position: absolute;
+    top: 20px;
+  }
+  .aboutText{
+    display: inline-block;
+    width: 730px;
+    iframe{
+      display: none;
+    }
+    h1{
+      font-size: 60px;
+      font-family: "Montserrat";
+      margin: 0 0 25px;
+      font-weight: 700
+    }
+    .greenBarSmall{
+      background-image: url(/assets/images/general/zenGreen2.png);
+      background-repeat: repeat;
+      height: 6px;
+      position: relative;
+      z-index: 100;
+      width: 160px;
+      margin-bottom: 40px;
+    }
+    .about-body{
+      max-width:730px;
+      width: 100%;
+      p{
+        font-size: 22px;
+        font-family: 'Open Sans', sans-serif;
+        margin-bottom: 30px;
+        line-height: 1.6;
+        a{
+          color: $mainGreen
+        }
+      }
+    }
+    .tribe{
+      font-size: 22px;
+      font-family: "Montserrat";
+      margin-bottom: 0;
+    }
+  }
+}
+.greyBox{
+  width: 100%;
+  height: 15px;
+  background: url(/assets/images/general/zenLight2.png);
+  box-shadow: 0px 1px 10px #363837;
+  position: relative;
+  z-index: 100;
+  border-bottom: 1px solid #737574;
+}
+.testimonials{
+  width: 100%;
+  padding: 20px 0;
+  background: url(/assets/images/general/zenDark2.png);
+  box-shadow: 0px -3px 6px #363837 ;
+  position: relative;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  .carousel{
+    outline: none;
+    .slick-prev{
+      left:0;
+    }
+    .slick-next{
+      right:0;
+    }
+    .slick-arrow{
+      z-index: 150;
+    }
+    div{
+      text-align: center;
+      outline: none;
+      img{
+        width: 154px;
+        border-radius: 100%;
+        border: 7px solid $mainRed;
+        display: block;
+        margin: 10px auto 5px;
+      }
+      p{
+        color: white;
+        font-family: "Montserrat";
+        max-width: 800px;
+        width: 100%;
+        display: inline-block;
+        margin-bottom: 0;
+        span{
+          font-size: 13px;
+          vertical-align: top;
+          padding: 0 5px;
+          font-weight: bold;
+        }
+      }
+      .testimonial-comment{
+        font-size: 27px;
+      }
+      .testimonial-name{
+        font-size: 18px;
+      }
+    }
+  }
+}
+.socialize{
+  width: 100%;
+  background: white;
+  padding: 50px 0 30px;
+  h2{
+    font-size: 50px;
+    font-family: "Montserrat";
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 40px;
+    margin-top: 0;
+  }
+  .grey{
+    padding: 30px 0;
+    width: 100%;
+    background: url(/assets/images/general/zenLighter2.png);
+    box-shadow: 0px 0px 10px #363837;
+    .container{
+      max-width:100%;
+      #instafeed{
+        display:flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+        padding: 0;
+        .instagramFeed{
+          margin: 0 10px;
+          position: relative;
+          width: 100%;
+          max-width:350px;
+          background-position: center center;
+          background-size: cover;
+          height: 250px;
+          background-repeat: no-repeat;
+            .instagram-overlay{
+              position: absolute;
+
+              height: 100%;
+              width: 100%;
+              background-color: rgba(0,0,0,.7);
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              display: flex;
+              opacity: 0;
+              padding: 10px;
+              -webkit-transition: opacity .45s;
+              -moz-transition: opacity .45s;
+              -ms-transition: opacity .45s;
+              -o-transition: opacity .45s;
+              transition: opacity .45s;
+              cursor: pointer;
+              .fa-search{
+                color: white;
+                font-size: 32px;
+              }
+              p{
+                color: white;
+                font-size: 13px;
+                line-height: 17px;
+                text-align: center;
+                padding-top: 10px;
+              }
+              &:hover{
+                opacity: 1;
+              }
+            }
+
+          img {
+            width: 100%;
+          }
+
+        }
+        .instaPopUp{
+          position: fixed; top:0; left: 0;
+          width:100%;
+          height: 100%;
+          background: rgba(0,0,0,.93);
+          z-index: 10000;
+          justify-content: center;
+          align-items: center;
+          display: none;
+          opacity: 0;
+          padding: 15px;
+          overflow: auto;
+          .instaBox{
+            max-width: 525px;
+            width: 100%;
+            position: relative;
+            img{
+              width: 100%;
+              margin-bottom: 8px;
+              border-radius: 5px;
+              &:last-of-type{
+                width: 32px;
+                border-radius: 100%;
+                margin-right: 10px;
+                margin-bottom: 0;
+              }
+            }
+            a{
+              font-size: 13px;
+              color: #cccccc;
+              text-decoration: none;
+              &:hover{
+                color: white;
+              }
+            }
+            p{
+              color: #cccccc;
+              font-size: 15px;
+              line-height: 19px;
+              margin-top: 8px;
+            }
+            .instaLike{
+              font-size: 13px;
+              color: #ccc;
+              border-right: 1px solid #ccc;
+              padding-right: 10px;
+              i{
+                color: #E07A5F;
+                padding-right: 5px;
+              }
+            }
+            .instagramLink{
+              padding-left: 10px;
+              font-size: 13px;
+              color: #ccc;
+              &:hover{
+                color: white;
+              }
+              i{
+                padding-right: 5px;
+              }
+            }
+            .instaClose{
+              font-size: 22px;
+              vertical-align: top;
+              float: right;
+              color: #ccc;
+              cursor: pointer;
+              &:hover{
+                color: white;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.signup{
+  height: 100px;
+  width: 100%;
+  background: white;
+  .container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+    .fa{
+      font-size: 64px;
+      color: #404040;
+      border-radius: 100%;
+      text-decoration: none;
+      &:hover{
+        color: $mainRed;
+      }
+    }
+  }
+}
+.arrow-up{
+  position: fixed;
+  bottom: 15px;
+  right: -45px;
+  background: rgba(0, 0, 0, 0.2);
+  width: 45px;
+  display: flex;
+  height: 45px;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none !important;
+  z-index: 1500;
+  span{
+    margin-bottom: 4px;
+    color: white;
+  }
+}
+.arrow-open{
+  right: 15px;
+}
+#contact{
+  height: 550px;
+  width: 100%;
+  background: url(/assets/images/general/zenDark2.png);
+  .container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    flex-direction: column;
+    h2{
+      color: white;
+      font-size: 50px;
+      font-family: "Montserrat";
+      margin: 0;
+      margin-bottom: 25px;
+      text-align: center;
+      font-weight: 700;
+    }
+    div{
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      .address{
+        display: inline-block;
+        width: auto;
+        position: relative;
+        height: 300px;
+        .map{
+          height: 300px;
+          width: 300px;
+          border: 7px solid #B0AEAF;
+          border-radius: 100%;
+          overflow: hidden;
+          background: url(/assets/images/general/map.jpg) center center no-repeat;
+          .map-overlay{
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            position: absolute;
+            top: 0;
+            left: 0;
+            text-align: center;
+            border-radius: 100%;
+            border: 7px solid #B0AEAF;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            h3{
+              color: white;
+              font-size: 28px;
+              display: block;
+              margin: 0;
+              font-family: "Montserrat";
+              font-weight: 700;
+            }
+            p, a{
+              font-size: 16px;
+              font-style: italic;
+              color: white;
+            }
+            p{
+              margin-bottom: 10px;
+            }
+            a:last-of-type{
+              color: $mainGreen;
+              font-size: 18px;
+              display: block;
+              margin-top:10px;
+            }
+          }
+        }
+
+      }
+      .contact{
+        width: 50%;
+        form{
+          text-align: center;
+          width: 100%;
+          input{
+            display: block;
+            width: 100%;
+            padding: 5px;
+          }
+          textarea{
+            width: 100%;
+            height: 150px;
+            resize: none;
+          }
+          input, textarea{
+            background: #f2f2f2;
+            padding: 8px;
+            border: none;
+            outline: none;
+            margin-bottom: 10px;
+            border-radius: 3px;
+            -webkit-transition: background-color .2s;
+            -moz-transition: background-color .2s;
+            -ms-transition: background-color .2s;
+            -o-transition: background-color .2s;
+            transition: background-color .2s;
+            &:focus{
+              background: white;
+            }
+          }
+          button{
+            width: 150px;
+            height: 45px;
+            background: $mainRed;
+            border: none;
+            color: white;
+            font-size: 30px;
+            border-bottom: 3px solid $darkRed;
+            text-shadow: $darkGreen 0px 1px 0px;
+            border-radius: 3px;
+            &:hover{
+              background: $darkRed;
+              border-bottom-color: #9a4e4e
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.gm-style .place-card-medium{
+  display: none !important;
+}
+footer{
+  height: 100px;
+  width: 100%;
+  background: url(/assets/images/general/zenDarker2.png);
+  box-shadow: 0px -3px 6px #363837 ;
+  position: relative;
+  z-index: 100;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  p{
+    color: #c3c2c3;
+    font-size: 14px;
+    margin: 0;
+    a{
+      color: $mainGreen;
+      text-decoration: none;
+    }
+  }
+}
+.signup-overlay{
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1500;
+  padding: 0 15px;
+  background: rgba(0,0,0, .8);
+  justify-content: center;
+  align-items: center;
+  display: none;
+  opacity: 0;
+  .form-overlay{
+    width: 1040px;
+    background: url(/assets/images/general/zenDark2.png);
+    border: 5px solid #888888;
+    position: relative;
+    padding:30px 20px;
+    text-align: center;
+    min-height: 360px;
+    .signup-box{
+      overflow: hidden;
+      width: 990px;
+      height: 100%;
+      .span-close{
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+        span{
+          font-size: 25px;
+          color: #48B6C6;
+        }
+      }
+      p{
+        font-size: 50px;
+        color: white;
+        font-family: "Montserrat";
+        text-transform: uppercase;
+        font-weight: 700;
+        line-height: 1.3;
+      }
+      .green{
+        color: $mainGreen !important
+      }
+      .signupBtn{
+        font-size: 20px;
+        color: white;
+        padding: 30px 0;
+        width: 470px;
+        border: none;
+        outline: none;
+        text-transform: uppercase;
+        font-family: "Montserrat";
+        font-weight: 700;
+        margin-top: 20px;
+      }
+      .yes{
+        background-color: $mainGreen;
+        border-bottom: 5px solid $darkGreen;
+        margin-right: 36px;
+      }
+      .no{
+        background-color: $mainRed;
+        border-bottom: 5px solid $darkRed;
+      }
+    }
+    .popup-form{
+      display: none;
+      width: 990px;
+      .span-close{
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+        span{
+          font-size: 25px;
+          color: #48B6C6;
+        }
+      }
+      p{
+        font-size: 28px;
+        font-weight: 700;
+        color: white;
+        font-family: "Montserrat";
+        text-transform: uppercase;
+      }
+      form{
+        input{
+          padding: 27px 20px !important;
+          border: 1px solid transparent;
+          outline: none;
+          margin-bottom: 4px;
+          width: 100%;
+          font-size: 20px;
+          border-radius: 3px;
+          &:hover{
+            border:1px solid $mainRed !important;
+          }
+        }
+        button{
+          width: 100%;
+          padding: 26px 10px;
+          background: $mainGreen;
+          font-size: 35px;
+          outline: 0;
+          color: white;
+          font-weight: 700;
+          border: none;
+          border-radius: 3px;
+        }
+      }
+    }
+  }
+}
+.signup-overlay-open{
+  opacity: 1
+}
+
+.blog{
+  .greenBar{
+    height: 5px;
+    border-bottom: 0;
+  }
+  .container{
+    padding-top: 50px;
+    padding-bottom: 50px;
+    .blogPage{
+      text-align: center;
+      width: 100%;
+      h1{
+        font-size: 80px;
+        color: #414141;
+        font-weight: 700;
+        margin-top: 0;
+        text-align: left;
+      }
+      .greenBarSmall{
+        background-image: url(/assets/images/general/zenGreen2.png);
+        background-repeat: repeat;
+        height: 6px;
+        position: relative;
+        z-index: 100;
+        width: 200px;
+        margin: 20px 0 100px;
+      }
+
+      .blogFlex{
+        a{
+          text-decoration: none;
+          width: 49%;
+          vertical-align: top;
+          display: inline-block;
+          .blogPreview{
+            border:1px solid #e3e3e3;
+            padding-bottom: 30px;
+            display: inline-block;
+            position: relative;
+            margin: 0 10px 30px;
+            text-align: left;
+            .previewPhoto{
+              width: 100%;
+              height: 343px;
+              background-repeat: no-repeat;
+              background-size: cover;
+              background-position: center center;
+              .blogPhotoOverlay{
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,.7);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                opacity:0;
+                -webkit-transition: opacity .4s;
+                -moz-transition: opacity .4s;
+                -ms-transition: opacity .4s;
+                -o-transition: opacity .4s;
+                transition: opacity .4s;
+                &:hover{
+                  opacity: 1;
+                }
+                i{
+                  color: white;
+                  font-size: 52px;
+                }
+              }
+            }
+            .blogPreviewTitle{
+              padding: 30px 20px 15px;
+              font-size: 16px;
+              font-weight: bold;
+              letter-spacing: 1px;
+              line-height: 20px;
+              text-transform: uppercase;
+              font-family: "Montserrat";
+              margin: 0;
+              color: #414141 !important;
+              -webkit-transition: color .2s;
+              -moz-transition: color .2s;
+              -ms-transition: color .2s;
+              -o-transition: color .2s;
+              transition: color .2s;
+              &:hover{
+                color:$mainGreen !important;
+              }
+            }
+            .blogPreviewDate{
+              font-size: 11px;
+              color: #999999 !important;
+              font-style: italic;
+              padding: 0 20px;
+            }
+            .blogPreviewExcerpt{
+              font-size: 18px;
+              padding: 0 20px;
+              color: #414141 !important;
+            }
+            .readMore{
+              font-size: 12px;
+              color: #414141 !important;
+
+              i{
+                font-size: 10px;
+              }
+            }
+            .likes{
+              color:#898989;
+              font-size: 14px;
+              position: absolute;
+              bottom: 0px;
+              right: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.blog{
+  .container{
+    display: flex;
+    justify-content: space-between;
+    &::before, &::after{
+      display: none;
+    }
+    .blogPost{
+      max-width: 800px;
+      width: 100%;
+      display: inline-block;
+      margin-right: 20px;
+      h1{
+        font-size: 50px;
+        color: #414141;
+        font-weight: 700;
+        margin-top: 35px;
+        text-transform: uppercase;
+        margin-bottom: 35px;
+      }
+      img{
+        width: 100%;
+      }
+      .blogContent{
+        margin-bottom: 30px;
+        video{
+          margin-bottom: 35px;
+          max-width: 500px;
+          width: 100%;
+          height: 350px;
+          margin-top: -35px;
+        }
+        p{
+          font-size: 22px;
+          color: #414141;
+          line-height: 1.66em;
+          padding-bottom: 20px;
+          a{
+            color: $mainGreen!important;
+            &:hover{
+              color: $mainGreen!important;
+            }
+          }
+        }
+      }
+      .comment-image{
+        img{
+          display: none !important;
+          width: 0 !important;
+          height: 0 !important;
+        }
+      }
+      .title{
+        font-weight: bold;
+        font-family: "Montserrat";
+        color: $mainGreen;
+      }
+      .meta-buttons{
+        display: none;
+      }
+      .comments{
+        .commentsNum{
+          font-weight: bold;
+        }
+      }
+    }
+    .recent{
+      width: 290px !important;
+      padding: 0 20px 30px;
+      display: inline-block;
+      .recentSocial{
+        text-align:center;
+        margin-bottom: 55px;
+        .fa{
+          font-size: 36px;
+          color: #414141;
+          padding: 0 5px;
+          text-decoration: none;
+          -webkit-transition: color .2s;
+          -moz-transition: color .2s;
+          -ms-transition: color .2s;
+          -o-transition: color .2s;
+          transition: color .2s;
+          &:hover{
+            color: $mainGreen;
+          }
+        }
+      }
+      p{
+        font-size: 14px;
+        letter-spacing: 1px;
+        color: #333333;
+        margin-bottom: 20px;
+        font-weight: 700;
+      }
+      .recentPosts{
+        margin-bottom: 15px;
+        height: 80px;
+        .recentPostsPhoto{
+          height: 80px;
+          width: 80px;
+          display: inline-block;
+          background-position: center center;
+          background-repeat: no-repeat;
+          background-size: cover;
+          float: left;
+          margin-right: 12px;
+        }
+        .recentTitle{
+          display: flex;
+          p{
+            display: inline-block;
+            font-weight: normal;
+            font-size: 12px;
+            width: 158px;
+            letter-spacing: 0;
+            margin-bottom: 0;
+            color: #999999;
+            -webkit-transition: color .2s;
+            -moz-transition: color .2s;
+            -ms-transition: color .2s;
+            -o-transition: color .2s;
+            transition: color .2s;
+            &:hover{
+              color: $mainGreen;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+.members{
+  min-height: 318px;
+  .container{
+    padding: 0;
+    height: 100%;
+    .videos{
+      padding: 100px 0;
+      text-align: center;
+      .memberVideos{
+        display: inline-block;
+        vertical-align: top;
+        width: 350px;
+        margin: 0 13px 26px;
+        iframe{
+          width: 350px;
+          height: 175px;
+        }
+        p{
+          font-size: 13px;
+          font-weight: 700;
+          margin:0;
+        }
+      }
+    }
+  }
+  .login{
+    width: 100%;
+    height: 218px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    p{
+      font-size: 22px;
+      margin: 0;
+      margin-bottom: 18px;
+      #green{
+        color: $mainGreen;
+      }
+    }
+  }
+}
+.loginForm{
+  position: absolute;
+  top: 100px;
+  background: #414141;
+  border-top: 3px solid $mainGreen;
+  right: 0px;
+  overflow: hidden;
+  display: none;
+  form{
+    padding: 18px 20px 25px;
+    input{
+      width: 100%;
+      border: none;
+      margin-bottom: 10px;
+      padding: 2px 4px;
+    }
+    h3{
+      font-size: 12px;
+      margin: 0;
+      color: white;
+    }
+    input[type='submit']{
+      background-color: $mainGreen;
+      color: white;
+      font-size: 14px;
+      font-family: "Montserrat";
+      font-weight: 700;
+      margin-bottom: 0;
+      outline: none;
+      &:hover{
+        background-color: $darkGreen;
+      }
+    }
+  }
+}
+.loginFormTop{
+  top: 60px !important;
+}
+.registration{
+  min-height: 318px;
+  text-align: center;
+  #red{
+    color: $mainRed;
+  }
+  .greenBarSmall{
+    background-image: url(/assets/images/general/zenGreen2.png);
+    background-repeat: repeat;
+    height: 6px;
+    position: relative;
+    z-index: 100;
+    width: 300px;
+    margin: 20px auto 30px;  }
+  p{
+    margin-top: 50px;
+    font-size: 22px;
+  }
+  form{
+    width: 100%;
+    text-align: center;
+    input{
+      display: block;
+      width: 300px;
+      outline: none;
+      border: none;
+      padding: 8px;
+      border: 1px solid #414141;
+      border-radius: 3px;
+      margin: 0 auto 5px;
+    }
+    input[type='submit']{
+      background: $mainGreen;
+      border: none;
+      margin-bottom: 50px;
+      color: white;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+    #signInError{
+      font-size: 13px;
+      margin: 10px 0 0;
+    }
+  }
+}
+.adminPanel{
+  position: absolute;
+  top: 100px;
+  background: #414141;
+  border-top: 3px solid $mainGreen;
+  right: 0px;
+  overflow: hidden;
+  padding: 20px 30px;
+  display: none;
+  a{
+    display: block;
+    padding-bottom: 15px;
+    color: white;
+    font-weight: bold;
+    font-size: 13px;
+    letter-spacing:2px;
+    &:last-of-type{
+      padding-bottom: 0;
+    }
+  }
+}
+.greenBarPages{
+  width: 100%;
+  height: 5px;
+  background: url(/assets/images/general/zenGreen2.png)
+}
+
+//PROGRAMS
+
+.kids, .yoga, .fitness, .adult{
+  .programHeader{
+    background-image: url(/assets/images/general/sbg-international2.jpg);
+    background-position: top center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 275px;
+  }
+  .greenBar{
+    height: 10px;
+    border: none;
+  }
+  .container{
+    padding-top:50px;
+    padding-bottom: 50px;
+    h1{
+      font-size: 60px;
+      color: #414141;
+      font-weight: 700;
+      margin-top: 0;
+      margin-bottom: 0;
+      text-align: left;
+    }
+    .greenBarSmall{
+      background-image: url(/assets/images/general/zenGreen2.png);
+      background-repeat: repeat;
+      height: 6px;
+      position: relative;
+      z-index: 100;
+      width: 200px;
+      margin: 20px 0 50px;
+    }
+    .programContent{
+      display: flex;
+      justify-content: space-between;
+      .programText{
+        width: 100%;
+        display: inline-block;
+        p{
+          font-size: 22px;
+          color: #414141;
+          line-height: 1.66em;
+          &:first-of-type, &:last-of-type{
+            font-weight: bold;
+            font-family: "Montserrat";
+          }
+        }
+        button{
+          width: 170px;
+          height: 50px;
+          background: #64BB67;
+          border: none;
+          color: white;
+          font-size: 25px;
+          margin-top: 20px;
+          border-bottom: 3px solid #4d994d;
+          text-shadow: #bd6158 0px 1px 0px;
+          &:hover{
+            background: $darkGreen;
+            border-color: $darkGreen;
+          }
+        }
+      }
+    }
+  }
+  #cboxClose, #cboxNext, #cboxPrevious{
+    display: block!important;
+  }
+  .gallery{
+    width: 100%;
+    .myGallery{
+      width: 100%;
+      text-align: center;
+    }
+    h3{
+      padding-top: 75px;
+      font-size: 22px;
+      font-family: "Montserrat";
+      color: #414141;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 30px;
+      text-align: center;
+      display: block;
+    }
+  }
+  .happyMembers{
+    min-height: 400px;
+    text-align: center;
+    padding-top: 75px;
+    .testimonialHeader{
+      font-size: 22px;
+      font-family: "Montserrat";
+      color: #414141;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 30px;
+    }
+    .testimonialGrid{
+      display: flex;
+      justify-content: space-between;
+      .testimonialItems{
+        display: inline-block;
+        width: 330px;
+        vertical-align: top;
+        text-align: left;
+        margin: 0 10px;
+        .testimonialText{
+          padding: 20px;
+          border: 1px solid #ededed;
+          background-color: #fafafa;
+          border-radius: 4px;
+          width: 100%;
+          color: #414141;
+          font-size: 20px;
+          text-align: left;
+          position: relative;
+          line-height: 1.66;
+          .pointer{
+            position: absolute;
+            background: #fafafa;
+            width: 15px;
+            height: 15px;
+            bottom: -8px;
+            left: 50px;
+            border-left: 1px solid #ededed;
+            border-bottom: 1px solid #ededed;
+            transform: rotate(-45deg);
+          }
+        }
+        img{
+          width: 94px;
+          border-radius: 100%;
+          margin-top: 25px;
+          margin-left: 10px;
+          border: 5px solid #64BB67;
+        }
+        .testimonialName{
+          font-size: 18px;
+          font-weight: bold;
+          color: $mainRed;
+          display: inline-block;
+          margin-left: 15px;
+        }
+      }
+    }
+  }
+}
+
+.contactPage{
+  min-height: 700px;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  iframe{
+    width: 100%;
+    height: 275px;
+    position: relative;
+    z-index: 800;
+  }
+  .greenBar{
+    border: none;
+    margin-top: -4px;
+    height: 10px;
+  }
+  img{
+    position: absolute;
+    top: 485px;
+    right: -150px;
+  }
+  .container{
+    padding-top: 50px;
+    padding-bottom: 50px;
+
+    h1{
+      font-size: 50px;
+      color: #414141;
+      font-weight: 700;
+      margin-top: 0;
+      margin-bottom: 0;
+      text-align: left;
+    }
+    .greenBarSmall{
+      background-image: url(/assets/images/general/zenGreen2.png);
+      background-repeat: repeat;
+      height: 6px;
+      position: relative;
+      z-index: 100;
+      width: 200px;
+      margin: 20px 0 30px;
+    }
+    .contactFlex{
+
+      .left{
+        max-width: 500px;
+        .contactInfo{
+          display: block;
+          font-size: 22px;;
+          color: #414141;
+          font-weight: bold;
+          text-decoration: none;
+          text-transform: uppercase;
+          &:last-of-type{
+            padding-bottom: 30px;
+          }
+        }
+        form{
+          p{
+            font-size: 14px;
+            font-weight: bold;
+            font-family: "Montserrat";
+            margin-bottom: 0;
+          }
+          input, textarea{
+            width: 500px;
+            display: block;
+            padding: 7px;
+            margin-bottom: 8px;
+            background: #fdfdfd;
+            border: 1px solid #e7e7e7;
+            border-radius: 5px;
+            outline: none;
+            &:focus{
+              background: white;
+              border-color: $mainGreen;
+            }
+          }
+          textarea{
+            height: 250px;
+            resize: none;
+          }
+          button{
+            width: 170px;
+            height: 50px;
+            background: #64BB67;
+            border: none;
+            color: white;
+            font-size: 25px;
+            margin-top: 20px;
+            border-bottom: 3px solid #4d994d;
+            text-shadow: #bd6158 0px 1px 0px;
+            border-radius: 5px;
+          }
+        }
+        .recentSocial{
+          text-align:center;
+          margin-bottom: 30px;
+          .fa{
+            font-size: 40px;
+            color: #414141;
+            padding: 0 10px;
+            text-decoration: none;
+            -webkit-transition: color .2s;
+            -moz-transition: color .2s;
+            -ms-transition: color .2s;
+            -o-transition: color .2s;
+            transition: color .2s;
+            &:hover{
+              color: $mainGreen;
+            }
+          }
+        }
+      }
+      .right{
+        width: 28%;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1190px){
+  .contactPage{
+    img{
+      right: -250px
+    }
+  }
+}
+
+@media screen and (max-width: 1070px){
+    .contactPage{
+      img{
+        right: -350px
+      }
+    }
+  .signup-overlay{
+    .form-overlay{
+      width: 100% !important;
+      padding: 10px 15px;
+      min-height: 0px;
+      .signup-box{
+        width: 100%;
+
+        span{
+          font-size: 30px;
+        }
+        .signupBtn{
+          margin-right: 0 !important;
+          width: 100%;
+          font-size: 20px;
+          padding: 15px!important;
+          margin-top: 10px;
+        }
+        p{
+          font-size: 20px;
+        }
+        .green{
+          font-size: 20px;
+        }
+      }
+      .popup-form{
+        width: 100%;
+      }
+    }
+  }
+  nav{
+    display: block;
+  }
+}
+@media screen and (max-width: 1140px){
+  nav, .container{
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .homeBody{
+    .container{
+      overflow-x: hidden;
+    }
+  }
+  .contactPage{
+    .container{
+      overflow-x: hidden;
+    }
+  }
+  nav{
+    display: block;
+  }
+}
+
+@media screen and (max-width: 975px){
+  .contactPage{
+    img{
+      right: -450px
+    }
+  }
+}
+
+@media screen and (max-width: 900px){
+  .blog{
+    .container{
+      flex-wrap: wrap;
+      .blogPost{
+        max-width: 100%;
+        margin-right: 0;
+      }
+      .recent{
+        padding: 50px 0 0 0;
+        .recentSocial{
+          text-align:left;
+        }
+      }
+    }
+  }
+  nav{
+    display: none!important;
+  }
+  header{
+    position: relative;
+    top: -40px;
+  }
+  #homepage{
+    .homepageHeader{
+      .headerText{
+        .text-box{
+          width: 100%;
+          h1{
+            font-size: 80px;
+          }
+          p{
+            font-size:30px;
+          }
+          .ctaButton{
+            font-size: 30px;
+          }
+        }
+      }
+    }
+  }
+  .homeBody{
+    padding: 50px 0;
+    .container{
+      img{
+        display: none;
+      }
+      .aboutText{
+        width: 100%;
+        text-align: center;
+        h1{
+          font-size: 54px;
+        }
+        .greenBarSmall{
+          margin: 0 auto 40px;
+        }
+        .about-body{
+          max-width: 100%;
+          text-align: left;
+          p{
+            font-size: 20px;
+          }
+        }
+        .tribe{
+          font-size: 20px;
+        }
+      }
+
+    }
+  }
+  .testimonials{
+    .carousel{
+      div{
+        .testimonial-comment{
+          font-size: 24px;
+        }
+      }
+    }
+  }
+  #contact{
+    position: relative;
+    .container{
+      h2{
+        font-size: 45px;
+      }
+    }
+  }
+  .socialize{
+    h2{
+      font-size: 45px;
+    }
+  }
+  .signup{
+    .container{
+      .fa{
+        font-size: 58px;
+      }
+    }
+  }
+  .mobileNav{
+    width: 100%;
+    height: 90px;
+    border-bottom: 3px solid $mainGreen;
+    background: white;
+    position: absolute;
+    top: 0;
+    z-index: 1400;
+    left: 0;
+    display: block;
+    .container{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 100%;
+      &::before{
+        display: none;
+      }
+      &::after{
+        display: none;
+      }
+      .menu{
+        position: relative;
+        width: 18px;
+        height: 21px;
+        span{
+          font-size: 21px;
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
+        .fa-times{
+          display: none;
+        }
+      }
+    }
+  }
+  .mobileNavItems{
+    position: absolute;
+    left: 0;
+    top: 90px;
+    height: 0;
+    overflow: hidden;
+    width: 100%;
+    background-color: white;
+    display: block;
+    z-index: 1400;
+    a, p{
+      display: block;
+      padding: 15px 20px;
+      color: #444444;
+      font-size: 13px;
+      border-bottom: 1px solid rgba(128,128,128,.2);
+      font-weight: bold;
+      cursor: pointer;
+    }
+    p{
+      margin-bottom: 0;
+    }
+    form{
+      padding-left: 20px;
+      height: 0;
+      overflow: hidden;
+      h3{
+        font-size:15px;
+        margin: 10px 0 0
+      }
+      input{
+        padding: 4px;
+        border: none;
+        background-color: #f1f1f1;
+      }
+      input[type='submit']{
+        display: block;
+        margin-top: 10px;
+        width: 184px;
+        border: none;
+        background-color: $mainGreen;
+        color: white;
+        font-weight: bold;
+      }
+    }
+    .mobileAdminLinks{
+      height: 0;
+      overflow: hidden;
+      a{
+        padding: 15px 30px;
+      }
+    }
+    .loginChevronOpen{
+      -webkit-transform: rotate(90deg);
+      -moz-transform: rotate(90deg);
+      -ms-transform: rotate(90deg);
+      -ms-transform: rotate(90deg);
+      -o-transform: rotate(90deg);
+      transform: rotate(90deg);
+      -webkit-transition: transform .25s;
+      -moz-transition: transform .25s;
+      -ms-transition: transform .25s;
+      -o-transition: transform .25s;
+      transition: transform .25s;
+    }
+    .fa-chevron-right{
+      float: right;
+      margin-top: 3px;
+      color: #444444 !important;
+      -webkit-transition: transform .25s;
+      -moz-transition: transform .25s;
+      -ms-transition: transform .25s;
+      -o-transition: transform .25s;
+      transition: transform .25s;
+    }
+    .adminChevronOpen{
+      -webkit-transform: rotate(90deg);
+      -moz-transform: rotate(90deg);
+      -ms-transform: rotate(90deg);
+      -o-transform: rotate(90deg);
+      transform: rotate(90deg);
+      -webkit-transition: transform .25s;
+      -moz-transition: transform .25s;
+      -ms-transition: transform .25s;
+      -o-transition: transform .25s;
+      transition: transform .25s;
+    }
+
+    .mobilePrograms{
+      height: 0;
+      overflow: hidden;
+      a{
+        padding: 15px 30px;
+      }
+    }
+    .programChevronOpen{
+      -webkit-transform: rotate(90deg);
+      -moz-transform: rotate(90deg);
+      -ms-transform: rotate(90deg);
+      -o-transform: rotate(90deg);
+      transform: rotate(90deg);
+      -webkit-transition: transform .25s;
+      -moz-transition: transform .25s;
+      -ms-transition: transform .25s;
+      -o-transition: transform .25s;
+      transition: transform .25s;
+    }
+    .mobileProgramsOpen{
+      height: auto;
+    }
+    .mobileAdminOpen{
+      height: auto;
+    }
+    .form-open{
+      padding-bottom: 10px;
+      height: auto;
+    }
+  }
+  .mobileOpen{
+    height: auto;
+  }
+}
+@media screen and (max-width: 865px){
+  .contactPage{
+    img{
+      display: none;
+    }
+    .contactFlex{
+      .left{
+        max-width: 100%!important;
+        width: 100%;
+        form{
+          input, textarea, button{
+            width: 100% !important;
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 815px){
+  .contactPage{
+    .container{
+      h1{
+        font-size: 40px;
+      }
+    }
+  }
+  .blogFlex{
+    a{
+      width: 100% !important;
+    }
+  }
+  .blog{
+    .container{
+      .blogPage{
+        h1{
+          font-size: 60px;
+        }
+      }
+    }
+  }
+  .blog{
+    .container{
+      .blogPage{
+        h1{
+          font-size: 50px;
+        }
+      }
+      .blogPost{
+        h1{
+          font-size: 35px;
+        }
+        .blogContent{
+          p{
+            font-size: 16px
+          }
+        }
+      }
+    }
+  }
+  #homepage{
+    .homepageHeader{
+      top: 0;
+      height: 450px;
+      margin-top: 90px;
+      background-image: url(/assets/images/general/mobile-bg.jpg);
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+      .videoWrapper{
+        display: none;
+      }
+      .headerText{
+        .text-box{
+          background: transparent;
+          i{
+            display: none;
+          }
+          h1{
+            font-size: 50px;
+            letter-spacing: -3px;
+          }
+          p{
+            font-size: 22px;
+            letter-spacing: -1px;
+            line-height: 1.2;
+          }
+          .ctaButton{
+            font-size:35px;
+          }
+        }
+      }
+    }
+  }
+  .homepageWrapper{
+    top: 0;
+  }
+  .testimonialGrid{
+    flex-wrap: wrap;
+    .testimonialItems{
+      width: 100% !important;
+      margin-bottom: 50px !important;
+      &:last-of-type{
+        margin-bottom: 0 !important;
+      }
+    }
+  }
+  .kids, .adult, .yoga, .fitness{
+    .container{
+      h1{
+        font-size: 40px;
+      }
+      .programContent{
+        .programText{
+          p{
+            font-size: 18px;
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 700px){
+  #contact{
+    .container{
+      div{
+        .address{
+          display: none;
+        }
+        .contact{
+          width: 100%;
+        }
+      }
+    }
+  }
+  .blog{
+    .container{
+      .blogPost{
+        h1{
+          font-size: 40px;
+        }
+        .blogContent{
+          p{
+            font-size: 18px;
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 636px){
+  .blog .container .blogPage .blogFlex a .blogPreview .previewPhoto {
+    width: 100%;
+    height: 200px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+  }
+  #homepage{
+    .homepageHeader{
+      .headerText{
+        .text-box{
+          h1{
+            font-size: 50px;
+          }
+          p{
+            font-size: 25px;
+          }
+          .ctaButton{
+            font-size: 25px;
+          }
+        }
+      }
+    }
+  }
+  .homeBody{
+    .container{
+      .aboutText{
+        h1{
+          font-size: 35px;
+        }
+        .about-body{
+          p{
+            font-size: 18px;
+          }
+        }
+      }
+    }
+  }
+  .testimonials{
+    .carousel{
+      div{
+        .testimonial-comment{
+          font-size: 18px;
+          padding: 0 10px;
+          span{
+            font-size: 10px;
+          }
+        }
+        img{
+          width: 130px;
+        }
+      }
+    }
+  }
+  .socialize{
+    h2{
+      font-size: 35px;
+    }
+  }
+  .signup{
+    height: 75px;
+    .container{
+      .fa{
+        font-size: 40px;
+      }
+    }
+  }
+  #contact{
+    .container{
+      h2{
+        font-size: 35px;
+        margin-bottom: 0;
+      }
+      div{
+        .contact{
+          form{
+            button{
+              font-size: 25px;
+              height: 40px;
+            }
+          }
+        }
+      }
+    }
+  }
+  footer{
+    height: auto;
+    p{
+      font-size: 10px;
+      padding: 25px 15px;
+    }
+  }
+}
+
+@media screen and (max-width: 480px){
+  .blog{
+    .container{
+      .blogPost{
+        .blogContent{
+          video{
+            height: 260px;
+          }
+        }
+      }
+    }
+  }
+
+  .homeBody{
+    .container{
+      .aboutText{
+        h1{
+          display: none;
+        }
+        .tribe{
+          display: none;
+        }
+        iframe{
+          display: block;width: 100%;
+        }
+        .greenBarSmall{
+          display: none;
+        }
+        .about-body{
+          p{
+            &:last-of-type{
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+  .socialize{
+    .grey{
+      .container{
+        #instafeed{
+          flex-wrap: wrap;
+          justify-content: center;
+          .instagramFeed{
+            margin-bottom: 30px;
+            width: 100%;
+            height: 180px;
+            .instagram-overlay{
+              opacity: 1!important;
+              height: 25%;
+              bottom: 0;
+            }
+            a{
+              img{
+                width: 100%;
+
+                &:last-of-type{
+                  padding-bottom: 0;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  #contact{
+
+    height: auto;
+    padding: 30px 0;
+    .container{
+      h2{
+        margin-bottom: 15px;
+      }
+    }
+  }
+  footer{
+    top: 0;
+    p{
+      font-size: 9px;
+    }
+  }
+  .members{
+    .container{
+      .videos{
+        .memberVideos{
+          max-width: 350px;
+          width: 100%;
+          margin: 0 0px 26px;
+          iframe{
+            max-width: 100%;
+          }
+        }
+      }
+    }
+  }
+  .mobileNav{
+    .container{
+      img{
+        width: 135px;
+      }
+    }
+  }
+  .arrow-open{
+    right: 0!important;
+    bottom: 10px !important;
+  }
+  .arrow-up{
+    right: 0;
+    left: 0;
+    margin: 0 auto;
+    background: rgba(0, 0, 0, 0.55);
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+    bottom: -40px;
+    display: none;
+  }
+  .signup-overlay{
+    .form-overlay{
+      padding: 20px;
+      .signup-box{
+        p{
+          font-size: 24px;
+        }
+        .green{
+          font-size: 24px;
+        }
+        .span-close{
+          top: 5px;
+          right: 5px;
+        }
+        .signupBtn{
+          padding: 15px;
+          font-size: 18px;
+        }
+        span{
+          font-size: 24px;
+        }
+      }
+      .popup-form{
+        p{
+          font-size: 24px;
+        }
+        .span-close{
+          top: 5px;
+          right: 5px;
+        }
+        form{
+          input{
+            padding: 15px !important;
+            font-size: 18px;
+          }
+          button{
+            padding: 15px;
+            font-size: 24px;
+          }
+        }
+      }
+    }
+  }
+}
